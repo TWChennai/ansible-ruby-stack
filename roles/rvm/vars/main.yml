@@ -1,2 +1,3 @@
 ---
-# vars file for rvm
+rvm_version: 1.26.10
+home_directory: /home/ubuntu

@@ -7,13 +7,11 @@
   shell: 'curl -sSL https://rvm.io/mpapis.asc | gpg --import -'
 
 - name: Install RVM
-  shell: 'curl -L https://get.rvm.io | /usr/bin/bash -s stable'
+  shell: 'curl -L https://get.rvm.io | `which bash` -s -- --version {{ rvm_version }}'
 
 - name: Load RVM
-  shell: 'source $HOME/.rvm/scripts/rvm'
-  args:
-    executable: /usr/bin/bash
+  lineinfile: dest='{{ home_directory }}/.bashrc' line='source $HOME/.rvm/scripts/rvm'
 
 - name: Install RVM dependencies
-  command: '/home/ubuntu/.rvm/bin/rvm requirements'
+  command: '{{ home_directory }}/.rvm/bin/rvm requirements'
   become: yes
