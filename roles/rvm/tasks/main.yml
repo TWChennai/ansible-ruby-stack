@@ -1,0 +1,19 @@
+---
+- name: Install curl
+  apt: name=curl update_cache=yes
+  become: yes
+
+- name: Adding GPG key
+  shell: 'curl -sSL https://rvm.io/mpapis.asc | gpg --import -'
+
+- name: Install RVM
+  shell: 'curl -L https://get.rvm.io | /usr/bin/bash -s stable'
+
+- name: Load RVM
+  shell: 'source $HOME/.rvm/scripts/rvm'
+  args:
+    executable: /usr/bin/bash
+
+- name: Install RVM dependencies
+  command: '/home/ubuntu/.rvm/bin/rvm requirements'
+  become: yes
