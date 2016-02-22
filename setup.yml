@@ -1,6 +1,6 @@
 ---
 - hosts: webserver
-  remote_user: ubuntu
-  gather_facts: False
+  remote_user: deploy
   roles:
     - { role: rvm, tags: rvm }
+    - { role: zzet.postgresql, tags: setup_postgres }
